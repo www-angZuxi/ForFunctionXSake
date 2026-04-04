@@ -7,17 +7,16 @@ function App() {
 
   return (
   <>
+    <Graph equation={equation} userEquation={userEquation} />
     <div className="form-floating mb-3">
     <input
       type="text" className="form-control" id="floatingInput" placeholder="Enter equation"
       value={userEquation}
       onChange={(e) => {
-        
-        const value = e.target.value.replaceAll(" ", "").replaceAll("y=", "");
-
+        let value = e.target.value.replaceAll(" ", "");
         setUserEquation(value);
-        if (value === equation) {
-          setTimeout(() => {window.alert("WE DID ITTT");}, 200);
+        if (value.toLowerCase().replaceAll("y=", "") === equation) {
+        setTimeout(() => {window.alert("Correct! 🎉");}, 200);
         }
       }}
     />
@@ -25,7 +24,6 @@ function App() {
     <label htmlFor="floatingInput">Enter Equation...</label>
     </div>
 
-    <Graph equation={equation} userEquation={userEquation} />
   </>
   );
 }
