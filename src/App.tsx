@@ -1,30 +1,33 @@
-import Graph from './components/Graph';
+import { useState } from "react";
+import Graph from "./components/Graph";
 
-function App(){
+function App() {
+  const equation = "x^2+1";
+  const [userEquation, setUserEquation] = useState("");
 
-  const equation = "x^2+1"
+  return (
+  <>
+    <div className="form-floating mb-3">
+    <input
+      type="text" className="form-control" id="floatingInput" placeholder="Enter equation"
+      value={userEquation}
+      onChange={(e) => {
+        
+        const value = e.target.value.replaceAll(" ", "").replaceAll("y=", "");
 
-  return <>
+        setUserEquation(value);
+        if (value === equation) {
+          setTimeout(() => {window.alert("WE DID ITTT");}, 200);
+        }
+      }}
+    />
 
-  <div className="form-floating mb-3">
-  <input
-    type="text" className="form-control"
-    id="floatingInput" placeholder="Enter equation"
-    onChange={(e) => {
-      if((e.target as HTMLInputElement).value.replaceAll(" ", "") == equation){
-        setTimeout(()=>{window.alert("WE DID ITTT")}, 200);
-      }
-    }}
-  />
-  <label htmlFor="floatingInput">Enter Equation...</label>
-  </div>
-  <div id="msg"></div>
-  
+    <label htmlFor="floatingInput">Enter Equation...</label>
+    </div>
 
-  <Graph equation={equation} />
-  
-  </>;
+    <Graph equation={equation} userEquation={userEquation} />
+  </>
+  );
 }
-
 
 export default App;
