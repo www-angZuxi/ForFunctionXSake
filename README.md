@@ -13,8 +13,6 @@ npm i mathjs
 
 Game only accepts one answer, sometimes multiple answers should be allowed
 
-Target Equation has to change after user solves successfully✅
-
 Need to connect a DB to store target equations, and maybe user profiles in the future
 
 ## Styling
