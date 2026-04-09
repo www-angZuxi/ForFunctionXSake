@@ -6,7 +6,7 @@ type GraphProps = {
   userEquation: string;
 };
 
-export default function Graph({ equation, userEquation }: GraphProps) {
+function Graph({ equation, userEquation }: GraphProps) {
 
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -20,8 +20,12 @@ export default function Graph({ equation, userEquation }: GraphProps) {
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        //#region Graph
+        //#region Graphlines
         const scale = 40; // pixels per unit
+
+        // Makes up the difference for different canvas dimnesions
+        let xdiff = Math.ceil((canvas.width/2)/scale)*scale - (canvas.width/2);
+        let ydiff = Math.ceil((canvas.height/2)/scale)*scale - (canvas.height/2);
 
         // Background
         ctx.fillStyle = "#f8f8f8";
@@ -31,32 +35,39 @@ export default function Graph({ equation, userEquation }: GraphProps) {
         ctx.strokeStyle = "#eeeeee";
         ctx.lineWidth = 1;
 
+
         for (let i = 0; i <= canvas.width; i += scale / 5) {
-        ctx.beginPath();
-        // x axis
-        ctx.moveTo(i-scale*0.15, 0);
-        ctx.lineTo(i-scale*0.15, canvas.height);
+            ctx.beginPath();
+            // x axis
+            ctx.moveTo(i-xdiff, 0);
+            ctx.lineTo(i-xdiff, canvas.height);
 
-        //y axis
-        ctx.moveTo(0, i-scale*0.55);
-        ctx.lineTo(canvas.width, i-scale*0.55);
-        ctx.strokeStyle = "#d0d0d0";
+            //y axis
+            ctx.moveTo(0, i-ydiff);
+            ctx.lineTo(canvas.width, i-ydiff);
+            ctx.strokeStyle = "#d0d0d0";
 
-        ctx.stroke();
+            ctx.stroke();
         }
+
 
         // Big grid lines
         for (let i = 0; i <= canvas.width; i += scale) {
-        ctx.beginPath();
-        // x axis
-        ctx.moveTo(i-scale*0.15, 0);
-        ctx.lineTo(i-scale*0.15, canvas.height);
 
-        //y axis
-        ctx.moveTo(0, i-scale*0.55);
-        ctx.lineTo(canvas.width, i-scale*0.55);
-        ctx.stroke();
-        ctx.strokeStyle = "#f7b6e1";
+            console.log(Math.ceil((canvas.width/2)/scale)*scale, canvas.width/2);
+
+
+            ctx.beginPath();
+            // x axis
+            ctx.moveTo(i-xdiff, 0);
+            ctx.lineTo(i-xdiff, canvas.height);
+
+            //y axis
+            ctx.moveTo(0, i-ydiff);
+            ctx.lineTo(canvas.width, i-ydiff);
+
+            ctx.stroke();
+            ctx.strokeStyle = "#f7b6e1";
         }
 
         // Axis
@@ -145,3 +156,5 @@ export default function Graph({ equation, userEquation }: GraphProps) {
     <canvas ref={canvasRef} width={window.innerWidth*0.75} height={window.innerHeight*0.6} className="border border-dark"></canvas>
     </div>
 }
+
+export default Graph;
