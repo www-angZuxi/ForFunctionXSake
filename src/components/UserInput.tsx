@@ -16,13 +16,12 @@ function UserInput({ targetEquations, userEquation, setUserEquation, index, setI
         <h2 className="fs-4">Today's problem set:</h2>
         <h2 className="my-5 fs-4">Level {index+1}/{targetEquations.length}</h2>
 
-        <div className="row">
+        <div className="row mb-5">
             {/* User Input */}
             <div className="form-floating mb-2 col">
             <input
             type="text" className="form-control" id="floatingInput" placeholder="Enter equation"
             value={userEquation}
-            style={{width:"15vw"}}
             onChange={(e) => {
                 let value = e.target.value.replaceAll(" ", "");
                 setUserEquation(value);

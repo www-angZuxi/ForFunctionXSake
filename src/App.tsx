@@ -33,12 +33,12 @@ function App() {
     >
 
 
-      <div className="col-3 text-muted" style={{margin:"0 4vw"}}>
+      <div className="col-sm-3 text-muted" style={{margin:"0 4vw"}}>
         <UserInput targetEquations={dailyequations} userEquation={userEquation} setUserEquation={setUserEquation} index={index} setIndex={setIndex}/>
       </div>
 
       
-      <div className="col-8">
+      <div className="col-xs-12 col-sm-8">
         <Graph equation={dailyequations[index][0]} userEquation={userEquation} />
       </div>
 

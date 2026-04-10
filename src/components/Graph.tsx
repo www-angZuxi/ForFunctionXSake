@@ -149,9 +149,10 @@ function Graph({ equation, userEquation }: GraphProps) {
 
     }, [equation, userEquation]);
 
-    return <div className="mr-5">
-    <canvas ref={canvasRef} width={window.innerWidth*0.6} height={window.innerHeight*0.6} className="ml-5"></canvas>
-    </div>
+    if(window.innerWidth <= 575 ){
+        return <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight*0.6}></canvas>
+    }
+    return <canvas ref={canvasRef} width={window.innerWidth*0.6} height={window.innerHeight*0.6}></canvas>
 }
 
 export default Graph;
