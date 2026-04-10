@@ -7,7 +7,7 @@ function Hint({hint}:HintProps){
 
     return <>
         <button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#hintModal">
-        Click for a hint
+            <span className="p-2 material-symbols-outlined">lightbulb</span>
         </button>
 
         <div className="modal fade" id="hintModal" tabIndex={-1} aria-labelledby="hintModalLabel" aria-hidden="true">
